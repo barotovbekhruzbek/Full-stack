@@ -12,7 +12,7 @@
 
 
 
-        <Button type="submit">Register</Button>
+        <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
       </form>
     </main>
   </div>
@@ -21,7 +21,21 @@
 <script>
 export default {
   name: "Register",
-  components: {}
+  components: {},
+
+      computed : {
+
+      isLoading () {
+        return this.$store.state.auth.isLoading
+      }
+
+      },
+
+  methods : {
+    submitHandler () {
+      this.$store.commit('setLoading')
+    }
+  }
 
 }
 </script>
