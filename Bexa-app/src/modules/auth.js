@@ -7,27 +7,32 @@ const state = {
 const mutations = {
    registerStart (state) {
     state.isLoading = true
+       state.user = null
+       state.error = null
    },
    registerSuccess (state, payload) {
        state.isLoading = false
-       // state.user =
+       state.user = payload
    },
-    registerFailure (state) {
+    registerFailure (state,payload) {
         state.isLoading = false
+        state.errors = payload
     }
 }
 const actions = {
     register(context,user) {
-        return new  Promise( ()=> {
+        return new  Promise( (resolve,reject) => {
             context.commit('registerStart')
             AuthService.register(user)
                 .then(response => {
-                    console.log('Response', response.data.user)
+
                     context.commit('registerSuccess',response.data.user)
+                    resolve(response.data.user)
                 })
                 .catch( error => {
 
                     context.commit('registerFailure',error.response.data)
+                    reject(error.response.data)
                 } )
         })
     }
