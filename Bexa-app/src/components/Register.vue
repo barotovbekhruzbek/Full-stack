@@ -1,51 +1,46 @@
 <template>
-  <div>
-    <main class="form-signin w-25 m-auto mt-5">
-      <form>
+  <main class="form-signin w-25 m-auto mt-5">
+    <form>
 
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
-        <Input :label="'Name'" :type="'text'" :placeholder="'Name'" />
+      <h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
 
-        <Input :label="'Email address'" :type="'email'"  :placeholder="'Email address'" />
-        <Input :label="'Password'" :type="'password'" :placeholder="'Password'" />
+      <Input :label="'Name'" :type="'text'" />
+      <Input :label="'Email address'" :type="'email'" />
+      <Input :label="'Password'" :type="'password'" />
 
-
-
-
-        <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
-      </form>
-    </main>
-  </div>
+      <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
+    </form>
+  </main>
 </template>
 
 <script>
+
 export default {
-  name: "Register",
-  components: {},
+  data() {
+    return {
 
-      computed : {
-
-      isLoading () {
-        return this.$store.state.auth.isLoading
-      }
-
-      },
-
-  methods : {
-    submitHandler (e) {
-    e.preventDefault()
-      const data = {
-      username: 'samidsdsadsadaddas',
-        email: 'jasdsddaasaad@gmail.com',
-        password: 'ddabdadassdhdasdsdadjk1'
-      }
-      this.$store.dispatch('register',data).then(user => console.log('USer', user)).catch(err => console.log('Error',err))
     }
-  }
-
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.auth.isLoading
+    },
+  },
+  methods: {
+    submitHandler(e) {
+      e.preventDefault()
+      const data = {
+        username: 'sbesx',
+        email: 'info@gmail.com',
+        password: 'sadawa1131w',
+      }
+      this.$store
+          .dispatch('register', data)
+          .then(user => console.log('USER', user))
+          .catch(err => console.log('ERROR', err))
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style></style>
