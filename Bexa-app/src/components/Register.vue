@@ -30,9 +30,9 @@ export default {
     submitHandler(e) {
       e.preventDefault()
       const data = {
-        username: 'sbesx',
-        email: 'info@gmail.com',
-        password: 'sadawa1131w',
+        username: 'sbe11sx',
+        email: 'infwqwo@gmail.com',
+        password: 'sawqdawa1131w',
       }
       this.$store
           .dispatch('register', data)

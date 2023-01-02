@@ -1,4 +1,5 @@
 import AuthService from "../service/auth";
+import {setItem} from "../helper/perSystemStore";
 const state = {
     isLoading:false,
     user: null,
@@ -27,7 +28,7 @@ const actions = {
                 .then(response => {
 
                     context.commit('registerSuccess',response.data.user)
-                    window.localStorage.setItem("token",response.data.user.token)
+                   setItem("token",response.data.user.token)
                     resolve(response.data.user)
                 })
                 .catch( error => {
