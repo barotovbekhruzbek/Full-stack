@@ -12,7 +12,7 @@
 
 
 
-        <Button type="submit">Login</Button>
+        <Button type="submit" :disabled="isLoading" @click="submitHandler">Login</Button>
 
       </form>
     </main>
@@ -22,7 +22,20 @@
 <script>
 export default {
   name: "Logi",
-  components: {}
+  components: {},
+  computed : {
+
+    isLoading () {
+      return this.$store.state.auth.isLoading
+    }
+
+  },
+
+  methods : {
+    submitHandler () {
+      this.$store.commit('setLoading')
+    }
+  }
 
 }
 </script>
