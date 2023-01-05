@@ -1,9 +1,9 @@
-import axios from "./axios";
+import axios from './axios'
 
-const AuthService = {
-   register(user) {
-       return axios.post('/users',{user})
-   }
+const AuthServise = {
+	register(user) {
+		return axios.post('/users', {user})
+	},
 }
 
-export default AuthService
+export default AuthServise

@@ -1,45 +1,60 @@
 <template>
-  <main class="form-signin w-25 m-auto mt-5">
-    <form>
+	<main class="form-signin w-25 m-auto mt-5">
+		<form>
+			<img :src="logo" alt="logo" style="width: 100px; cursor: pointer" @click="toHomeHandler" />
+			<h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
 
-      <h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
+			<ValidationError v-if="validationErrors" :validationErrors="validationErrors" />
 
-      <Input :label="'Name'" :type="'text'" />
-      <Input :label="'Email address'" :type="'email'" />
-      <Input :label="'Password'" :type="'password'" />
+			<Input :label="'Name'" :type="'text'" v-model="username" />
+			<Input :label="'Email address'" :type="'email'" v-model="email" />
+			<Input :label="'Password'" :type="'password'" v-model="password" />
 
-      <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
-    </form>
-  </main>
+			<Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
+		</form>
+	</main>
 </template>
 
 <script>
-
+import {logo} from '../contstants'
+import ValidationError from '@/components/ValidationError.vue'
 export default {
-  data() {
-    return {
-
-    }
-  },
-  computed: {
-    isLoading() {
-      return this.$store.state.auth.isLoading
-    },
-  },
-  methods: {
-    submitHandler(e) {
-      e.preventDefault()
-      const data = {
-        username: 'sbe11sx',
-        email: 'infwqwo@gmail.com',
-        password: 'sawqdawa1131w',
-      }
-      this.$store
-          .dispatch('register', data)
-          .then(user => console.log('USER', user))
-          .catch(err => console.log('ERROR', err))
-    },
-  },
+	data() {
+		return {
+			logo,
+			username: '',
+			email: '',
+			password: '',
+		}
+	},
+	components: {
+		ValidationError,
+	},
+	computed: {
+		isLoading() {
+			return this.$store.state.auth.isLoading
+		},
+		validationErrors() {
+			return this.$store.state.auth.errors
+		},
+	},
+	methods: {
+		submitHandler(e) {
+			e.preventDefault()
+			const data = {
+				username: this.username,
+				email: this.email,
+				password: this.password,
+			}
+			this.$store
+				.dispatch('register', data)
+				.then(user => {
+					console.log('USER', user)
+					this.$router.push({name: 'home'})
+				})
+				.catch(err => console.log('ERROR', err))
+		},
+	},
 }
 </script>
 

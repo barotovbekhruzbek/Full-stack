@@ -1,22 +1,18 @@
 <template>
-  <div>
-  <Navbar />
-  </div>
-
-  <RouterView/>
+	<div>
+		<div class="container">
+			<Navbar />
+			<RouterView />
+		</div>
+	</div>
 </template>
 
 <script>
-import { RouterView } from 'vue-router'
-import Navbar from "./components/Navbar.vue";
-export default  {
-  components: {
-    Navbar
-  }
+import {Navbar} from '@/components'
+import {RouterView} from 'vue-router'
+export default {
+	components: {Navbar},
 }
-
 </script>
 
-<style>
-
-</style>
+<style></style>
