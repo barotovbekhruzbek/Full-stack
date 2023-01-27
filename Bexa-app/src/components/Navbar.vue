@@ -26,6 +26,7 @@
 <script>
 import {mapState} from 'vuex'
 import {logo} from '../contstants'
+import {getterTypes} from '@/modules/types'
 export default {
   data() {
     return {
@@ -34,9 +35,12 @@ export default {
   },
   computed: {
     ...mapState({
-      currentUser: state => state.auth.user,
+     // currentUser: state => state.auth.user,
       isLoggedIn: state => state.auth.isLoggedIn,
     }),
+    currentUser () {
+      return this.$store.getters[getterTypes.currentUser]
+    }
   },
   methods: {
     toHomeHandler() {
