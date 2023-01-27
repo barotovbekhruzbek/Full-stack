@@ -11,6 +11,12 @@ const state = {
 const getters = {
 	[getterTypes.currentUser] : state => {
 		return state.user
+	},
+	[getterTypes.isLoggedIn]:state=> {
+		return Boolean(state.isLoggedIn)
+	},
+	[getterTypes.isAnonymous]:state => {
+		return state.isLoggedIn ===false
 	}
 }
 

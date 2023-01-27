@@ -11,7 +11,7 @@
           }}</RouterLink>
       </template>
 
-      <template v-if="!isLoggedIn">
+      <template v-if="isAnonymous">
         <RouterLink :to="{name: 'login'}" class="me-3 py-2 text-dark text-decoration-none"
         >Login</RouterLink
         >
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapGetters} from 'vuex'
 import {logo} from '../contstants'
 import {getterTypes} from '@/modules/types'
 export default {
@@ -34,13 +34,15 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-     // currentUser: state => state.auth.user,
-      isLoggedIn: state => state.auth.isLoggedIn,
-    }),
-    currentUser () {
-      return this.$store.getters[getterTypes.currentUser]
-    }
+
+    ...mapGetters({
+      currentUser:getterTypes.currentUser,
+      isLoggedIn:getterTypes.isLoggedIn,
+      isAnonymous:getterTypes.isAnonymous,
+
+    })
+
+
   },
   methods: {
     toHomeHandler() {
